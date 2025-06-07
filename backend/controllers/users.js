@@ -65,14 +65,16 @@ const loginUser = asyncHandler(async (req, res) => {
 
   res.cookie("token", token, {
     httpOnly: true,
-    secure: false, // only in prod
-    sameSite: "lax", // CSRF protection
-    maxAge: 60 * 60 * 1000, // 1 hour
+    secure: false,
+    sameSite: "lax",
+    maxAge: 60 * 60 * 1000,
   });
 
   res.status(200).json({
     success: true,
     message: "Login successful",
+    data: user,
+    token
   });
 });
 
